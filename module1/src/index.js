@@ -1,8 +1,17 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 
 class Button extends React.Component {
+  static defaultProps = {
+    children: 'Salvar',
+  };
+
+  static propTypes = {
+    onClick: PropTypes.func.isRequired,
+    children: PropTypes.string,
+  };
+
   render() {
     return (
       <a href="" onClick={this.props.onClick}>
@@ -11,15 +20,6 @@ class Button extends React.Component {
     );
   }
 }
-
-Button.defaultProps = {
-  children: 'Salvar',
-};
-
-Button.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  children: PropTypes.string,
-};
 
 class App extends React.Component {
   handleClick() {
