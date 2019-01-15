@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { render } from 'react-dom';
 
 import Button from './Button';
+import './style.scss';
 
 class App extends React.Component {
   state = {
