@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
-import { render } from "react-dom";
-import { throws } from "assert";
+import React, { Component, Fragment } from 'react';
+import { render } from 'react-dom';
+import PropTypes from 'prop-types';
 
 class Button extends React.Component {
   render() {
@@ -12,19 +12,29 @@ class Button extends React.Component {
   }
 }
 
+Button.defaultProps = {
+  children: 'Salvar',
+};
+
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.string,
+};
+
 class App extends React.Component {
   handleClick() {
-    alert("Botão Clicado");
+    alert('Botão Clicado');
   }
 
   render() {
     return (
       <Fragment>
         <h1>Hellou</h1>
+        <Button onClick={() => {}} />
         <Button onClick={this.handleClick}>Enviaar</Button>
       </Fragment>
     );
   }
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));
