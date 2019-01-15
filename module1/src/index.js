@@ -1,1 +1,1 @@
-const soma = (a, b) => a + b;
+import React from "react";

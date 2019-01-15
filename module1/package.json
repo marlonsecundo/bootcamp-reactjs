@@ -13,9 +13,10 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "webpack": "^4.28.4",
-    "webpack-cli": "^3.2.1"
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   },
   "scripts": {
-    "dev": "webpack --mode development"
+    "dev": "webpack-dev-server --mode development"
   }
 }
