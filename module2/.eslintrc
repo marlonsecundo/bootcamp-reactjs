@@ -5,7 +5,7 @@
     "browser": true,
     "jest": true
   },
-  "plugins": ["react", "jsz-a11y", "import"],
+  "plugins": ["react", "jsx-a11y", "import"],
   "rules": {
     "linebreak-style": "off",
     "react/jsx-filename-extension": [
