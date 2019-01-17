@@ -8,6 +8,7 @@
   "plugins": ["react", "jsx-a11y", "import"],
   "rules": {
     "react/jsx-one-expression-per-line": "off",
+    "react/destructuring-assignment": "off",
     "linebreak-style": "off",
     "react/jsx-filename-extension": [
       "error",
