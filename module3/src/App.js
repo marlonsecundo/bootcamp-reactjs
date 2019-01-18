@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 
-class App extends Component {
-  render() {
-    return <div className="App" />;
-  }
-}
+import store from './store';
+
+const App = () => (
+  <Provider store={store}>
+    <h1>Hello World</h1>
+  </Provider>
+);
 
 export default App;
