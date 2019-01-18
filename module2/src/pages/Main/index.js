@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import logo from '../../assets/logo.png';
 import { Container, Form } from './styles';
 
@@ -10,19 +11,25 @@ export default class Main extends Component {
   state = {
     repositoryInput: '',
     repositories: [],
+    repositoryError: false,
   };
 
   handleAddRepository = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await api.get(`/repos/${this.state.repositoryInput}`);
+      const { data: repository } = await api.get(`/repos/${this.state.repositoryInput}`);
+
+      repository.pushed_at = moment(repository.pushed_at).fromNow();
 
       this.setState({
         repositoryInput: '',
-        repositories: [...this.state.repositories, response],
+        repositories: [...this.state.repositories, repository],
+        repositoryError: false,
       });
-    } catch (err) {}
+    } catch (err) {
+      this.setState({ repositoryError: true });
+    }
   };
 
   render() {
@@ -30,7 +37,7 @@ export default class Main extends Component {
       <Container>
         <img src={logo} alt="Github Compare" />
 
-        <Form onSubmit={this.handleAddRepository}>
+        <Form onSubmit={this.handleAddRepository} withError={this.state.repositoryError}>
           <input
             type="text"
             onChange={e => this.setState({ repositoryInput: e.target.value })}
