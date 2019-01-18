@@ -2,14 +2,19 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { bindActionsCreators, bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 import * as TodoActions from '../../store/actions/todos';
 
-const TodoList = ({ todos, addTodo }) => (
+const TodoList = ({ todos, addTodo, removeTodo }) => (
   <Fragment>
     <ul>
       {todos.map(todo => (
-        <li key={todo.id}>{todo.text}</li>
+        <li key={todo.id}>
+          {todo.text}
+          <button type="submit" onClick={() => removeTodo(todo.id)}>
+            Remover Todo
+          </button>
+        </li>
       ))}
     </ul>
     <button type="submit" onClick={() => addTodo('Novo Todo')}>
@@ -26,6 +31,7 @@ TodoList.propTypes = {
     }),
   ).isRequired,
   addTodo: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
