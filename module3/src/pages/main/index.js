@@ -23,7 +23,7 @@ class Main extends React.Component {
 
   handleAddRepository = (e) => {
     e.preventDefault();
-    this.props.addFavorites();
+    this.props.addFavorite();
   };
 
   render() {
