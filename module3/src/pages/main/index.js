@@ -7,14 +7,18 @@ import * as FavoriteActions from '../../store/actions/favorites';
 class Main extends React.Component {
   static propTypes = {
     addFavoriteRequest: PropTypes.func.isRequired,
-    favorites: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        name: PropTypes.string,
-        description: PropTypes.string,
-        url: PropTypes.string,
-      }).isRequired,
-    ).isRequired,
+    favorites: PropTypes.shape({
+      loading: PropTypes.bool,
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number,
+          name: PropTypes.string,
+          description: PropTypes.string,
+          url: PropTypes.string,
+        }),
+      ),
+      error: PropTypes.string.isRequired,
+    }).isRequired,
   };
 
   state = {
@@ -24,6 +28,7 @@ class Main extends React.Component {
   handleAddRepository = (e) => {
     e.preventDefault();
     this.props.addFavoriteRequest(this.state.repositoryInput);
+    this.setState({ repositoryInput: '' });
   };
 
   render() {
@@ -38,19 +43,24 @@ class Main extends React.Component {
             }}
           />
           <button type="submit">Adicionar</button>
-          <ul>
-            {this.props.favorites.map(favorite => (
-              <li key={favorite.id}>
-                <p>
-                  <strong>
-                    {favorite.name} ({favorite.description})
-                  </strong>
-                  <a href={favorite.url}>Acessar</a>
-                </p>
-              </li>
-            ))}
-          </ul>
+
+          {this.props.favorites.loading && <span>Carregando</span>}
+          {!!this.props.favorites.error && (
+            <span style={{ color: '#F00' }}>{this.props.favorites.error}</span>
+          )}
         </form>
+        <ul>
+          {this.props.favorites.data.map(favorite => (
+            <li key={favorite.id}>
+              <p>
+                <strong>
+                  {favorite.name} ({favorite.description})
+                </strong>
+                <a href={favorite.url}>Acessar</a>
+              </p>
+            </li>
+          ))}
+        </ul>
       </Fragment>
     );
   }
