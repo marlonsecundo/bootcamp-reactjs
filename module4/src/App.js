@@ -1,13 +1,14 @@
 import React, { Component, Fragment } from 'react';
 
 import GlobalStyle from './styles/global';
+import Sidebar from './components/SideBar';
 
 class App extends Component {
   render() {
     return (
       <Fragment>
         <GlobalStyle />
-        <h1>Hello World</h1>
+        <Sidebar />
       </Fragment>
     );
   }
